@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">My Todo Items</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card p-4 card-white">
+            <div class="card-body">
+                <app-add-edit-item [selectedItem]="selectedItem"></app-add-edit-item>
+                <div *ngIf="(todoService.todoList$ | async) as todoList" class="todo-list" >
+                    <ng-container *ngFor="let todo of todoList; let i = index;">
+                        <app-todo (onItemSelect)="onSelect($event)" [item]="todo"></app-todo>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
